@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class GameStateControl : MonoBehaviour
 {
     [HideInInspector] public StateMachine stateMachine = new StateMachine();
-
+    [HideInInspector] public HUDControl hud;
     [HideInInspector] public bool sprinting;
     [HideInInspector] public bool tumbling;
     public GameObject activePlayer;
@@ -22,6 +22,7 @@ public class GameStateControl : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        hud = FindObjectOfType<HUDControl>();
         AssignActivePlayer();    
     }
 

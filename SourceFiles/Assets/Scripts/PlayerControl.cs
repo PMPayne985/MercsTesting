@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     public float guardTime;
     float guardTimer;
     public GameObject shield;
+    public GameObject weapon;
     public GameObject cam;
     GameStateControl gameState;
     CharacterController con;
@@ -41,6 +42,7 @@ public class PlayerControl : MonoBehaviour
         con = GetComponent<CharacterController>();
         curWounds = stats.wounds;
         curEndurance = stats.endurance;
+        weapon = GetComponent<PlayerAttack>().weapon;
     }
 
     // Update is called once per frame

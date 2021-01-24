@@ -15,6 +15,7 @@ public class HUDControl : MonoBehaviour
     public GameObject menuPanel;
     public GameObject systemPanel;
     public GameObject comingSoonPanel;
+    public GameObject characterWindow;
     public Text enduranceText;
     public Text woundsText;
 

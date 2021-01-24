@@ -80,8 +80,10 @@ public class CombatState : IState
 
     public void Enter()
     {
-        owner.activePlayer.GetComponent<PlayerControl>().combatActive = true;
+        owner.hud.characterWindow.SetActive(true);
 
+        owner.activePlayer.GetComponent<PlayerControl>().combatActive = true;
+        
         foreach (EnemyControl enemy in owner.allEnemies)
         {
             if (enemy != null)
@@ -108,13 +110,18 @@ public class CombatState : IState
     public void Exit()
     {
         owner.activePlayer.GetComponent<PlayerControl>().combatActive = false;
+        owner.activePlayer.GetComponent<PlayerControl>().weapon.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
 
         foreach (EnemyControl enemy in owner.allEnemies)
         {
             if (enemy != null)
+            {
                 enemy.stateMachine.ChangeState(new EnemySearchState(enemy));
+                enemy.weapon.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
+            }
         }
 
+        owner.hud.characterWindow.SetActive(false);
     }
 }
 
