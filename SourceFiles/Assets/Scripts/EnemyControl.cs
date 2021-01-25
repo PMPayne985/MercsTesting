@@ -55,6 +55,11 @@ public class EnemyControl : MonoBehaviour
 
     }
 
+    void FixedUpdate()
+    {
+        stateMachine.FixedUpdate();
+    }
+
     void Death()
     {
         Destroy(gameObject);

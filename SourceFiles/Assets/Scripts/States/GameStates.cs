@@ -19,6 +19,11 @@ public class GameStates : IState
         Debug.Log("updating test state");
     }
 
+    void IState.FixedExecute()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void Exit()
     {
         Debug.Log("exiting test state");
@@ -37,6 +42,11 @@ public class MenuState : IState
     }
 
     public void Execute()
+    {
+        
+    }
+
+    void IState.FixedExecute()
     {
         
     }
@@ -64,6 +74,11 @@ public class GameOverState : IState
     public void Execute()
     {
 
+    }
+
+    void IState.FixedExecute()
+    {
+       
     }
 
     public void Exit()
@@ -107,6 +122,11 @@ public class CombatState : IState
         }
     }
 
+    void IState.FixedExecute()
+    {
+        
+    }
+
     public void Exit()
     {
         owner.activePlayer.GetComponent<PlayerControl>().combatActive = false;
@@ -145,14 +165,10 @@ public class MovementState : IState
             {
                 if (!player.GetComponent<Stats>().dead && player.GetComponent<PlayerControl>().currentActive)
                 {
-                    player.GetComponent<PlayerMovement>().BasicControls();
-                    player.GetComponent<PlayerMovement>().CameraRotate();                    
+                    player.GetComponent<PlayerMovement>().Jump();
+                    player.GetComponent<PlayerMovement>().CameraRotate();
                     player.GetComponent<PlayerControl>().Tumble();
                     player.GetComponent<PlayerControl>().Sprint();
-                }
-                else if (!player.GetComponent<Stats>().dead && !player.GetComponent<PlayerControl>().currentActive)
-                {
-                    player.GetComponent<PlayerMovement>().AIControl();
                 }
             }
         }
@@ -162,6 +178,24 @@ public class MovementState : IState
             if (enemy != null)
             {
 
+            }
+        }
+    }
+
+    void IState.FixedExecute()
+    {
+        foreach (GameObject player in owner.curParty)
+        {
+            if (player != null)
+            {
+                if (!player.GetComponent<Stats>().dead && player.GetComponent<PlayerControl>().currentActive)
+                {
+                    player.GetComponent<PlayerMovement>().BasicControls();
+                }
+                else if (!player.GetComponent<Stats>().dead && !player.GetComponent<PlayerControl>().currentActive)
+                {
+                    player.GetComponent<PlayerMovement>().AIControl();
+                }
             }
         }
     }

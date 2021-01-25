@@ -71,11 +71,8 @@ public class PlayerMovement : MonoBehaviour
             impactDamage = 0;
     }
 
-    public void BasicControls()
+    public void Jump()
     {
-        velocity.y += gravity * Time.deltaTime;
-        con.Move(velocity * Time.deltaTime);
-
         if (con.isGrounded)
         {
             if (Input.GetButtonDown("Jump"))
@@ -83,19 +80,20 @@ public class PlayerMovement : MonoBehaviour
                 velocity.y += jumpPower;
             }
         }
+    }
 
+    public void BasicControls()
+    {       
         Vector3 move = transform.TransformDirection(Vector3.forward) * Input.GetAxis("Vertical");
         Vector3 straff = transform.TransformDirection(Vector3.right) * Input.GetAxis("Horizontal");
-
-        Vector3 myForward = new Vector3(move.x, -0.1f, move.z);
-        Vector3 myRight = new Vector3(straff.x, -0.1f, straff.z);
-
-        con.Move(velocity * Time.deltaTime);
 
         con.Move(move * Time.deltaTime * speed);
         con.Move(straff * Time.deltaTime * speed);
 
+        velocity.y += gravity * Time.deltaTime;
         con.Move(velocity * Time.deltaTime);
+
+        Debug.Log(con.isGrounded);
     }
 
     public void CameraRotate()

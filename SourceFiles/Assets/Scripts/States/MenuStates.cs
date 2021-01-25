@@ -18,6 +18,11 @@ public class MenuStates : MonoBehaviour, IState
         Debug.Log("updating test state");
     }
 
+    void IState.FixedExecute()
+    {
+        
+    }
+
     public void Exit()
     {
         Debug.Log("exiting test state");
@@ -47,6 +52,11 @@ public class ClosedState : IState
         {
             owner.stateMachine.ChangeState(new SystemState(owner));
         }
+    }
+
+    void IState.FixedExecute()
+    {
+        
     }
 
     public void Exit()
@@ -81,6 +91,11 @@ public class SystemState: IState
         }
     }
 
+    void IState.FixedExecute()
+    {
+        
+    }
+
     public void Exit()
     {
         owner.systemPanel.SetActive(false);
@@ -104,6 +119,11 @@ public class ComingSoonState : IState
         {
             owner.stateMachine.ChangeState(new ClosedState(owner));
         }
+    }
+
+    void IState.FixedExecute()
+    {
+        
     }
 
     public void Exit()

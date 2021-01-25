@@ -40,6 +40,11 @@ public class HUDControl : MonoBehaviour
         woundsText.text = "Wounds: " + player.curWounds + "/" + stats.wounds;
     }
 
+    void FixedUpdate()
+    {
+        stateMachine.FixedUpdate();
+    }
+
     public void WriteToLog(string text)
     {
         logText.text += "\n" + text;

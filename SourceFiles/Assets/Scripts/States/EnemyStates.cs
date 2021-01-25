@@ -19,10 +19,15 @@ public class EnemyStates : IState
         Debug.Log("updating test state");
     }
 
+    void IState.FixedExecute()
+    {
+        
+    }
+
     public void Exit()
     {
         Debug.Log("exiting test state");
-    }
+    }    
 }
 
 public class EnemyIdleState : IState
@@ -39,6 +44,11 @@ public class EnemyIdleState : IState
     public void Execute()
     {
         owner.transform.Rotate(0, 0.5f, 0);
+    }
+
+    void IState.FixedExecute()
+    {
+        
     }
 
     public void Exit()
@@ -71,6 +81,11 @@ public class EnemySearchState : IState
         {
             SetRandomDestination();
         }
+    }
+
+    void IState.FixedExecute()
+    {
+        
     }
 
     public void Exit()
@@ -132,6 +147,11 @@ public class EnemyChaseState : IState
     public void Execute()
     {
         ChaseTarget();
+    }
+
+    void IState.FixedExecute()
+    {
+        
     }
 
     public void Exit()

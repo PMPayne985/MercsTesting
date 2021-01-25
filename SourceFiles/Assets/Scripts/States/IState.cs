@@ -4,6 +4,7 @@ public interface IState
 {
     void Enter();
     void Execute();
+    void FixedExecute();
     void Exit();
 }
 
@@ -25,5 +26,10 @@ public class StateMachine
     public void Update()
     {
         if (currentState != null) currentState.Execute();
+    }
+
+    public void FixedUpdate()
+    {
+        if (currentState != null) currentState.FixedExecute();
     }
 }

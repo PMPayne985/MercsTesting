@@ -44,6 +44,11 @@ public class GameStateControl : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        stateMachine.FixedUpdate();
+    }
+
     public void AssignActivePlayer()
     {
         curParty = GameObject.FindGameObjectsWithTag("Player");
