@@ -43,7 +43,15 @@ public class ClosedState : IState
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         gameState = GameObject.Find("GameStateController").GetComponent<GameStateControl>();
-        gameState.stateMachine.ChangeState(new MovementState(gameState));
+
+        if (owner.stateCon.activePlayer.GetComponent<PlayerControl>().combatActive)
+        {
+            gameState.stateMachine.ChangeState(new CombatState(gameState));
+        }
+        else
+        {
+            gameState.stateMachine.ChangeState(new MovementState(gameState));
+        }        
     }
 
     public void Execute()

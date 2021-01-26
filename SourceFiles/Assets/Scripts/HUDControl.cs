@@ -8,7 +8,7 @@ public class HUDControl : MonoBehaviour
 {
     [HideInInspector] public StateMachine stateMachine = new StateMachine();
 
-    GameStateControl stateCon;
+    public GameStateControl stateCon;
     PlayerControl player;
     Stats stats;
 
