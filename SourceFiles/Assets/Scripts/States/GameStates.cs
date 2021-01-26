@@ -65,6 +65,7 @@ public class GameOverState : IState
 
     public void Enter()
     {
+        owner.activePlayer.GetComponent<PlayerControl>().combatActive = false;
         Time.timeScale = 0;
         owner.gameOverPanel.SetActive(true);
         Cursor.visible = true;
@@ -128,8 +129,7 @@ public class CombatState : IState
     }
 
     public void Exit()
-    {
-        owner.activePlayer.GetComponent<PlayerControl>().combatActive = false;
+    {       
         owner.activePlayer.GetComponent<PlayerControl>().weapon.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
 
         foreach (EnemyControl enemy in owner.allEnemies)
@@ -154,7 +154,7 @@ public class MovementState : IState
 
     public void Enter()
     {
-
+        owner.activePlayer.GetComponent<PlayerControl>().combatActive = false;
     }
 
     public void Execute()

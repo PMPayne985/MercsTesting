@@ -20,10 +20,9 @@ public class GameStateControl : MonoBehaviour
     public int impactDamage;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        hud = FindObjectOfType<HUDControl>();
-        AssignActivePlayer();    
+        hud = FindObjectOfType<HUDControl>();  
     }
 
     // Update is called once per frame

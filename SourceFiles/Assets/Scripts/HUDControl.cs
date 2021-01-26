@@ -22,12 +22,13 @@ public class HUDControl : MonoBehaviour
     [SerializeField] Text logText;
 
     void Awake()
-    {
-        stateMachine.ChangeState(new ClosedState(this));
-
+    {       
         stateCon = FindObjectOfType<GameStateControl>();
 
         WriteToLog("Your Battle Begins!");
+
+        stateCon.AssignActivePlayer();
+        stateMachine.ChangeState(new ClosedState(this));
     }
 
     void Update()

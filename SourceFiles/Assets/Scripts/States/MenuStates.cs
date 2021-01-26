@@ -42,9 +42,9 @@ public class ClosedState : IState
         owner.menuPanel.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        gameState = GameObject.Find("GameStateController").GetComponent<GameStateControl>();
+        gameState = owner.stateCon;
 
-        if (owner.stateCon.activePlayer.GetComponent<PlayerControl>().combatActive)
+        if (gameState.activePlayer.GetComponent<PlayerControl>().combatActive)
         {
             gameState.stateMachine.ChangeState(new CombatState(gameState));
         }
